@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_065605) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_070600) do
   create_table "administrators", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "password_digest"
+    t.date "birthday"
+    t.string "email"
+    t.string "number", null: false
+    t.integer "sex", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
