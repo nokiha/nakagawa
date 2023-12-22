@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_070600) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_074413) do
   create_table "administrators", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "username", null: false
+    t.integer "department_id", null: false
+    t.string "password_digest"
+    t.integer "sex", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_doctors_on_department_id"
   end
 
   create_table "patients", force: :cascade do |t|
