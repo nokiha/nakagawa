@@ -10,12 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_074413) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
   create_table "administrators", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "slot_id", null: false
+    t.time "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+    t.index ["slot_id"], name: "index_appointments_on_slot_id"
+  end
+
+  create_table "checks", force: :cascade do |t|
+    t.integer "appointment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_checks_on_appointment_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -50,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_074413) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.integer "doctor_id", null: false
+    t.time "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_slots_on_doctor_id"
   end
 
 end
