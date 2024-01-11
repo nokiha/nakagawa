@@ -1,4 +1,4 @@
-class TopController < ApplicationController
+class Doctor::TopController < Doctor::Base
     def login
     end
 

@@ -1,4 +1,4 @@
 class Administrator < ApplicationRecord
-    has_secure_password  # パスワードの属性
+    has_secure_password  # パスワードの安全性
 
 end

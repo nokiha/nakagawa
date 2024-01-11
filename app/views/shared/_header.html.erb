@@ -1,4 +1,38 @@
 <% @page_title = "中川クリニック" %>
 <h1><%= @page_title %></h1>
 
+<% if current_patient %>
+  <ul class="account-menu">
+  <%= menu_link_to current_patient.username + "さん", :account %>
+    <%= menu_link_to "ログアウト", :patient_session,
+      method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </ul>
+<% end %>
+
+<% if current_doctor %>
+  <ul class="account-menu">
+  <%= menu_link_to current_doctor.username + "さん", :account %>
+    <%= menu_link_to "ログアウト", :doctor_session,
+      method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </ul>
+<% end %>
+
+<% if current_administrator %>
+  <ul class="account-menu">
+  <%= menu_link_to current_administrator.username + "さん", :account %>
+    <%= menu_link_to "ログアウト", :admin_session,
+      method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </ul>
+<% end %>
+
+<% if current_reception%>
+  <ul class="account-menu">
+  <%= menu_link_to current_reception.username + "さん", :account %>
+    <%= menu_link_to "ログアウト", :reception_session,
+      method: :delete, data: { confirm: "ログアウトしますか？" } %>
+  </ul>
+<% end %>
+
 <%=render "shared/menubar"%>
+
+

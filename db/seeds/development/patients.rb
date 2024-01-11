@@ -5,6 +5,7 @@ gnames = ["Taro", "Jiro", "Hanako","Shu"]
 0.upto(19) do |idx|
     Patient.create(
     username: "#{fnames[idx % 5]} #{gnames[idx % 4]}",
+    usertype: "patient",
     email: "#{fnames[idx % 5]} #{gnames[idx % 4]}@example.com",
     birthday: "1981-12-01",
     sex: [1, 1, 2][idx % 3],

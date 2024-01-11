@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
   create_table "administrators", force: :cascade do |t|
     t.string "username", null: false
+    t.string "usertype", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "doctors", force: :cascade do |t|
     t.string "username", null: false
+    t.string "usertype", null: false
     t.integer "department_id", null: false
     t.string "password_digest"
     t.integer "sex", default: 0, null: false
@@ -53,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "patients", force: :cascade do |t|
     t.string "username", null: false
+    t.string "usertype", null: false
     t.string "password_digest"
     t.date "birthday"
     t.string "email"
@@ -64,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "receptions", force: :cascade do |t|
     t.string "username", null: false
+    t.string "usertype", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "slots", force: :cascade do |t|
     t.integer "doctor_id", null: false
-    t.time "time", null: false
+    t.time "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_id"], name: "index_slots_on_doctor_id"

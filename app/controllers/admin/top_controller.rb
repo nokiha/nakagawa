@@ -1,4 +1,4 @@
-class TopController < ApplicationController
+class Admin::TopController < Admin::Base
     def login
     end
 

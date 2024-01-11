@@ -6,6 +6,7 @@ name = ["耳鼻科","内科","皮膚科"]
     Doctor.create(
       department: department,
       username: "#{fnames[idx % 4]} #{gnames[idx % 3]}",
+      usertype: "doctor",
       sex: [1, 1, 2][idx % 3],
       password: "123",
       password_confirmation: "123",
