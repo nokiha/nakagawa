@@ -11,6 +11,17 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div id="container">
+  <%= render "shared/header" %>
+         </header>
+         <main>
+          <% if flash.notice %>
+            <p class="notice"><%= flash.notice %></p>
+          <% end %>
+
+           <%= yield %>
+         </main>
+        
+       </div>
   </body>
 </html>
