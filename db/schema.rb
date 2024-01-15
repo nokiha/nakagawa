@@ -75,9 +75,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "slots", force: :cascade do |t|
     t.integer "doctor_id", null: false
-    t.time "date", null: false
+    t.integer "appointment_id"
+    t.datetime "time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_slots_on_appointment_id"
     t.index ["doctor_id"], name: "index_slots_on_doctor_id"
   end
 
