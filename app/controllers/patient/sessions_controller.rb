@@ -3,10 +3,12 @@ class Patient::SessionsController < ApplicationController
         patient = Patient.find_by(username: params[:username])
         if patient&.authenticate(params[:password])
             session[:patient_id] = patient.id 
+            redirect_to :patient_root
         else
             flash.alert = "名前とパスワードが一致しません"
+            redirect_to "/patient_login"
         end
-        redirect_to "/patient_login"
+        
     end
     
     def destroy

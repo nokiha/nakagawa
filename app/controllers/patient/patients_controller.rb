@@ -1,5 +1,4 @@
 class Patient::PatientsController < Patient::Base
-    before_action :patient_login_required
     def index
     end
 
