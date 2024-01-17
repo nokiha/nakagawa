@@ -1,0 +1,11 @@
+<% @page_title = @time.strftime('%Y-%m-%d') + "のスケジュール" %>
+<h1><%= @page_title %></h1>
+
+<% @slots.group_by { |slot| slot.time.to_i / 2.hours } .each do |_, slots| %>
+    <div>
+      <h2><%= slots.first.time.strftime("%H:%M") %> - <%= slots.last.time.strftime("%H:%M") %></h2>
+      <% slots.each do |slot| %>
+        <p><%= slot.doctor.username %></p>
+      <% end %>
+    </div>
+  <% end %>

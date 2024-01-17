@@ -1,5 +1,5 @@
 class Admin::TopController < Admin::Base
-    def login
+    def index
     end
 
 

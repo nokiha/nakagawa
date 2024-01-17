@@ -1,12 +1,6 @@
-class Patient::AccountsController < Patient::Base
-  def index
-  end
-
-  def new
-  end
-  
-  def create
-  end
+class Patient::AccountsController < ApplicationController
+  # ログインしていない場合newとcreateのみ行える
+  before_action :login_required
 
   def show
   end
@@ -17,6 +11,4 @@ class Patient::AccountsController < Patient::Base
   def update
   end
 
-  def destroy
-  end
 end

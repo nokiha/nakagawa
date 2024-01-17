@@ -44,8 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "doctors", force: :cascade do |t|
     t.string "username", null: false
-    t.string "usertype", null: false
     t.integer "department_id", null: false
+    t.string "number", null: false
+    t.string "email"
     t.string "password_digest"
     t.integer "sex", default: 0, null: false
     t.datetime "created_at", null: false
@@ -55,7 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
 
   create_table "patients", force: :cascade do |t|
     t.string "username", null: false
-    t.string "usertype", null: false
     t.string "password_digest"
     t.date "birthday"
     t.string "email"

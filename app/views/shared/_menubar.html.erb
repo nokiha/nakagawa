@@ -1,24 +1,17 @@
 <nav class="menubar">
   <ul>
-    <%= menu_link_to "初めて受診される方", "" unless current_doctor || current_reception || current_administrator || current_patient%>
-    <% if current_patient %>
-      <%= menu_link_to "TOP", :patient_root %>
-      <%= menu_link_to "web予約", "" %>
-      <%= menu_link_to "マイページ", "" %>
-
+  <%= menu_link_to "初めて受診される方", :new_patients unless current_patient || current_administrator || current_doctor || current_reception%>
+    <% if controller.kind_of?(Patient::Base) %>
+        <%=render "shared/patient_menubar"%>
     <% end %>
     <% if current_doctor %>
-        <%= menu_link_to "患者カルテ", "" %>
-        <%= menu_link_to "予約枠拡張", "" %>
+        <%=render "shared/doctor_menubar"%>
     <% end %>
     <% if current_reception %>
-        <%= menu_link_to "受付", "" %>
-        <%= menu_link_to "予約枠拡張", "" %>
+        <%=render "shared/reception_menubar"%>
     <% end %>
-    <% if current_administrator %>
-        <%= menu_link_to "医者情報確認", "" %>
-        <%= menu_link_to "患者情報確認", "" %>
-        <%= menu_link_to "予約情報確認", "" %>
+    <% if controller.kind_of?(Admin::Base) %>
+        <%=render "shared/admin_menubar"%>
     <% end %>
 
   </ul>

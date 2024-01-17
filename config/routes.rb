@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "forbidden" => "top#forbidden"
   get "internal_server_error" => "top#internal_server_error"
 
-  resource :account, only: [:show, :edit, :update, :new, :create]
+  #resource :account, only: [:new, :create]
   resource :patients, only: [:new, :create]
   resource :doctors
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # 患者のルーティング
   namespace :patient do
     root "patients#index"
-    resources :patients
+    resources :patients, except: [:new, :create]
     resource :account, only: [:show, :edit, :update, :new, :create]
     resources :slots, only: [:index, :edit]
     resources :departments, only: [:index] do
@@ -43,12 +43,12 @@ Rails.application.routes.draw do
 
   # 管理者のルーティング
   namespace :admin do
-    root "admin#index"
+    root "top#index"
     resources :patients do
       get "search", on: :collection
     end
     resources :doctors do
-      get "search", on: :collection
+      #get "search", on: :collection
     end
     resource :session, only: [:create, :destroy]
   end
