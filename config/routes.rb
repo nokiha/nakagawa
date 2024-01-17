@@ -24,15 +24,16 @@ Rails.application.routes.draw do
       resources :slots, only: [:index]
     end
     resource :session, only: [:create, :destroy]
-    resources :patients, only: [:index, :show] do
-      resources :appointments, only: [:index]
-      resources :slots, only: [:index]
-    end
+    #resources :patients, only: [:index, :show] do
+    #  resources :appointments, only: [:index]
+    #  resources :slots, only: [:index]
+    #end
   end
 
   # 医者のルーティング
   namespace :doctor do
     root "doctors#index"
+    resource :account, only: [:show, :edit, :update, :new, :create]
     resources :doctors, only: [:index, :show] do
       resources :patients, only: [:index, :show]
       resources :appointments, only: [:index]

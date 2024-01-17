@@ -13,6 +13,6 @@ class Patient::SessionsController < ApplicationController
     
     def destroy
         session.delete(:patient_id) 
-        redirect_to "/patient_login"
+        redirect_to :root
     end
 end
