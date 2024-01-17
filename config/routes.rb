@@ -37,7 +37,6 @@ Rails.application.routes.draw do
     resources :doctors, only: [:index, :show] do
       resources :patients, only: [:index, :show]
       resources :appointments, only: [:index]
-      resources :slots, only: [:index]
     end
     resource :session, only: [:create, :destroy]
   end
