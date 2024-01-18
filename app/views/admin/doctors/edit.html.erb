@@ -1,2 +1,9 @@
-<% @page_title = "doctor/edit" %>
+<% @page_title = "医者情報の更新" %>
 <h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "医者の情報に戻る", [:admin, @doctor] %></div>
+
+<%= form_for [:admin, @doctor] do |form| %>
+  <%= render "doctors_form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>

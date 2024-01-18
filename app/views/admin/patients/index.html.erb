@@ -1,6 +1,22 @@
 <% @page_title = "患者一覧" %>
 <h1><%= @page_title %></h1>
 
+<%= form_tag :search_admin_patients, method: :get, class: "search" do %>
+  <%= text_field_tag "q", params[:q] %>
+  
+  <%= radio_button_tag "sex", "1" %>
+  <%= label_tag "sex_1", "男"%>
+
+  <!-- 女性のラジオボタン -->
+  <%= radio_button_tag "sex", "2" %>
+  <%= label_tag "sex_2", "女"%>
+
+  <!-- 指定なし（デフォルトでチェックが入っている）ラジオボタン -->
+  <%= radio_button_tag "sex", 0, true %>
+  <%= label_tag "sex_0", "指定なし"%>
+  <%= submit_tag "検索" %>
+<% end %>
+
 <% if @patients.present? %>
   <table class="list">
     <thead>

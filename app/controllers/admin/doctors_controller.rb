@@ -5,7 +5,7 @@ class Admin::DoctorsController < Admin::Base
     end
 
     def search
-        @doctors = Doctor.search(params[:q],params[:sex])
+        @doctors = Doctor.search(params[:q],params[:department])
         .page(params[:page]).per(15)
         # ページネーションbudleがないと動かない
 
