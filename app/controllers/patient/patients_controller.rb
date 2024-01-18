@@ -9,14 +9,20 @@ class Patient::PatientsController < Patient::Base
     end
 
     def show
+        @patient = current_patient
     end
 
     def edit
+        @patient = current_patient
     end
 
     def update
-    end
-
-    def destroy
+        @patient = Patient.find(params[:id])
+        @patient.assign_attributes(params[:patient])
+        if @patient.save
+            redirect_to [:patient, @patient], notice: "登録情報を更新しました。"
+        else
+            render "patient/patients/edit"
+        end
     end
 end

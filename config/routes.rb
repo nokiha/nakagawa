@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   namespace :patient do
     root "patients#index"
     resources :patients, except: [:new, :create]
-    resource :account, only: [:show, :edit, :update, :new, :create]
-    resources :slots, only: [:index, :edit]
+    #resource :account, only: [:edit, :update, :new, :create]
+    resources :appointments, only: [:index, :edit]
     resources :departments, only: [:index] do
       resources :slots, only: [:index]
     end
@@ -31,9 +31,8 @@ Rails.application.routes.draw do
   end
 
   # 医者のルーティング
-  namespace :doctor do
+  namespace :doctor  do
     root "doctors#index"
-    resource :account, only: [:show, :edit, :update, :new, :create]
     resources :doctors, only: [:index, :show] do
       resources :patients, only: [:index, :show]
       resources :appointments, only: [:index]

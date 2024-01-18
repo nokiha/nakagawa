@@ -3,7 +3,7 @@
 
 <% if current_patient %>
   <ul class="account-menu">
-  <%= menu_link_to current_patient.username + "さん", :edit_patient_account %>
+  <%= menu_link_to current_patient.username + "さん", edit_patient_patient_path(current_patient.id) %>
     <%= menu_link_to "ログアウト", :patient_session,
       method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
@@ -11,7 +11,7 @@
 
 <% if current_doctor %>
   <ul class="account-menu">
-  <%= menu_link_to current_doctor.username + "さん", :edit_doctor_account %>
+  <%= current_doctor.username + "さん"%>
     <%= menu_link_to "ログアウト", :doctor_session,
       method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>

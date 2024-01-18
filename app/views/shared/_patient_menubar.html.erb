@@ -1,6 +1,5 @@
   <ul>
-      <%= menu_link_to "初めて受診される方", :new_patients unless current_patient%>
       <%= menu_link_to "TOP", :patient_root %>
       <%= menu_link_to "web予約", "" %>
-      <%= menu_link_to "マイページ", "" %>
+      <%= menu_link_to "マイページ", patient_patient_path(current_patient.id) %>
   </ul>

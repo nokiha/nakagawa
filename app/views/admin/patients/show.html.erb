@@ -3,4 +3,29 @@
 
 <div class="toolbar"><%= link_to "患者一覧に戻る", :admin_patients %></div>
 
-<%= render "patient_body" %>
+<table class="attr">
+  <tr>
+    <th width="150">id</th>
+    <td><%= @patient.id %></td>
+  </tr>
+  <tr>
+    <th>患者名</th>
+    <td><%= @patient.username %></td>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <td><%= @patient.sex == 1 ? "男" : "女" %></td>
+  </tr>
+  <tr>
+    <th>誕生日</th>
+    <td><%= @patient.birthday&.strftime("%Y年%m月%d日") %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @patient.email %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @patient.number %></td>
+  </tr>
+</table>
