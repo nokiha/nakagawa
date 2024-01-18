@@ -44,11 +44,11 @@ Rails.application.routes.draw do
   # 管理者のルーティング
   namespace :admin do
     root "top#index"
-    resources :patients do
+    resources :patients, only: [:index, :show, :destroy] do
       get "search", on: :collection
     end
     resources :doctors do
-      #get "search", on: :collection
+      get "search", on: :collection
     end
     resource :session, only: [:create, :destroy]
   end

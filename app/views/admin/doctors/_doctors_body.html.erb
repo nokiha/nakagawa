@@ -1,0 +1,37 @@
+<table class="attr">
+  <tr>
+    <th width="150">id</th>
+    <td><%= @doctor.id %></td>
+  </tr>
+  <tr>
+    <th>医者名</th>
+    <td><%= @doctor.username %></td>
+  </tr>
+  <tr>
+  <th>担当診察科</th>
+  <td>
+    <% case @doctor.department_id %>
+    <% when 1 %>
+      耳鼻科
+    <% when 2 %>
+      内科
+    <% when 3 %>
+      皮膚科
+    <% else %>
+      未所属
+    <% end %>
+  </td>
+</tr>
+  <tr>
+    <th>性別</th>
+    <td><%= @doctor.sex == 1 ? "男" : "女" %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @doctor.email %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @doctor.number %></td>
+  </tr>
+</table>

@@ -2,16 +2,16 @@
   <ul>
   <%= menu_link_to "TOP", :root unless current_patient || current_administrator || current_doctor || current_reception%>
   <%= menu_link_to "初めて受診される方", :new_patients unless current_patient || current_administrator || current_doctor || current_reception%>
-    <% if controller.kind_of?(Patient::Base) %>
+    <% if current_patient %>
         <%=render "shared/patient_menubar"%>
     <% end %>
-    <% if controller.kind_of?(Doctor::Base) %>
+    <% if current_doctor %>
         <%=render "shared/doctor_menubar"%>
     <% end %>
-    <% if controller.kind_of?(Reception::Base) %>
+    <% if current_reception %>
         <%=render "shared/reception_menubar"%>
     <% end %>
-    <% if controller.kind_of?(Admin::Base) %>
+    <% if current_administrator %>
         <%=render "shared/admin_menubar"%>
     <% end %>
 
