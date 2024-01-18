@@ -1,5 +1,7 @@
 class Admin::DoctorsController < Admin::Base
     def index
+        @doctors = Doctor.order("id")
+        .page(params[:page]).per(15)
         
     end
 
@@ -10,7 +12,7 @@ class Admin::DoctorsController < Admin::Base
     def create
         @doctor = Doctor.new(params[:doctor])
         if @doctor.save
-            redirect_to :root, notice: "会員登録が完了しました。"
+            redirect_to :admin_root, notice: "医者の登録が完了しました。"
         else
             render "admin/doctors/new"
         end

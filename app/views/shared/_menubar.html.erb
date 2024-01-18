@@ -1,13 +1,14 @@
 <nav class="menubar">
   <ul>
+  <%= menu_link_to "TOP", :root unless current_patient || current_administrator || current_doctor || current_reception%>
   <%= menu_link_to "初めて受診される方", :new_patients unless current_patient || current_administrator || current_doctor || current_reception%>
     <% if controller.kind_of?(Patient::Base) %>
         <%=render "shared/patient_menubar"%>
     <% end %>
-    <% if current_doctor %>
+    <% if controller.kind_of?(Doctor::Base) %>
         <%=render "shared/doctor_menubar"%>
     <% end %>
-    <% if current_reception %>
+    <% if controller.kind_of?(Reception::Base) %>
         <%=render "shared/reception_menubar"%>
     <% end %>
     <% if controller.kind_of?(Admin::Base) %>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   #resource :account, only: [:new, :create]
   resource :patients, only: [:new, :create]
-  resource :doctors
+  #resource :doctors, only: []
 
   get "/doctor_login" => "top#doctor_login"
   get "/reception_login" => "top#reception_login"
