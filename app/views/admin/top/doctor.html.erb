@@ -1,0 +1,44 @@
+<% @page_title = "医者一覧" %>
+<h1><%= @page_title %></h1>
+
+<%= form_tag :search_admin_doctors, method: :get, class: "search" do %>
+  <%= text_field_tag "q", params[:q] %>
+  
+  <%= radio_button_tag "department", "1" %>
+  <%= label_tag "department_1", "耳鼻科"%>
+
+  <%= radio_button_tag "department", "2" %>
+  <%= label_tag "department_2", "内科"%>
+
+  <%= radio_button_tag "department", "3" %>
+  <%= label_tag "department_3", "皮膚科"%>
+
+  <!-- 指定なし（デフォルトでチェックが入っている）ラジオボタン -->
+  <%= radio_button_tag "department", 0, true %>
+  <%= label_tag "department_0", "指定なし"%>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<% if @doctors.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>名前</th>
+        <th>担当診察科</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @doctors.each do |doctor| %>
+        <tr>
+          <td style="text-align: right"><%= doctor.id %></td>
+          <td><%= link_to doctor.username, "/admin/doctor/#{doctor.id}/slots" %></td>
+          <td><%= doctor.department_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @doctors %>
+<% else %>
+  <p>医者情報がありません。</p>
+<% end %>

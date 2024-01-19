@@ -1,0 +1,14 @@
+<% @page_title = "予約ページ" %>
+<h1><%= @page_title %></h1>
+
+<ul>
+<p>診察を希望する科を選択してください</p>
+</ul>
+
+<table class="list">
+    <% @departments.each do |department| %>
+        <tr>
+            <td><%= link_to department.name, patient_department_path(department.id) %></td>
+        </tr>
+    <% end %>
+</table>

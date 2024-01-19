@@ -17,12 +17,14 @@ Rails.application.routes.draw do
   # 患者のルーティング
   namespace :patient do
     root "patients#index"
+    get "/doctor(/:doctor_id)/slots" => "slots#index"
     resources :patients, except: [:new, :create]
     #resource :account, only: [:edit, :update, :new, :create]
     resources :appointments, only: [:index, :edit]
-    resources :departments, only: [:index] do
-      resources :slots, only: [:index]
+    resources :departments, only: [:index, :show] do
+      resources :slots, only: [:index, :show]
     end
+
     resource :session, only: [:create, :destroy]
     #resources :patients, only: [:index, :show] do
     #  resources :appointments, only: [:index]
@@ -43,6 +45,8 @@ Rails.application.routes.draw do
   # 管理者のルーティング
   namespace :admin do
     root "top#index"
+    get "/getdoctor" => "top#doctor"
+    #get "/doctor(/:doctor_id)/slots" => "top#slots"
     resources :patients, only: [:index, :show, :destroy] do
       get "search", on: :collection
     end
@@ -54,12 +58,12 @@ Rails.application.routes.draw do
 
   namespace :reception do
     root "reception#index"
-    resources :reception, only: [:index, :show] do
-      resources :patients, only: [:index, :show]
-      resources :appointments, only: [:index]
-      resources :slots, only: [:index]
-      resources :check, only: [:index, :show, :create]
-    end
+    #resources :reception, only: [:index, :show] do
+    #  resources :patients, only: [:index, :show]
+     # resources :appointments, only: [:index]
+     # resources :slots, only: [:index]
+     # resources :check, only: [:index, :show, :create]
+    #end
     resource :session, only: [:create, :destroy]
   end
 end

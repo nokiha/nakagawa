@@ -1,0 +1,16 @@
+<% @page_title = "予約時間の選択" %>
+<h1><%= @page_title %></h1>
+
+
+<table class="list">
+<% @slots.where(doctor_id: @doctor.id).each do |slot| %>
+    <% if slot.appointment == nil %>
+        <% if @t != slot.time.strftime( "%m-%d %H:%M" ) %>
+        <tr>
+            <td><%= link_to slot.time.strftime( "%m-%d %H:%M" ), "slot" %></td>
+        <tr>
+            <% @t = slot.time.strftime( "%m-%d %H:%M" ) %>
+        <% end %>
+    <% end %>
+<% end %>
+</table>

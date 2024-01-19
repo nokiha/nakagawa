@@ -3,6 +3,7 @@ class Doctor::DoctorsController < Doctor::Base
         @time = DateTime.new(2024,01,12,9,0,0,"+00:00")
         @doctor_id = current_doctor.id
         @slots = Slot.where(doctor_id: @doctor_id)
+        .page(params[:page]).per(35) 
     end
 
     def new

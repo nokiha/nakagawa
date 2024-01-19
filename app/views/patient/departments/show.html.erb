@@ -1,0 +1,14 @@
+<% @page_title = "予約ページ" %>
+<h1><%= @page_title %></h1>
+
+<ul>
+<p>診察を希望する先生を選択してください</p>
+</ul>
+
+<table class="list">
+<% @doctors.each do |doctor| %>
+  <tr>
+    <td><%= link_to doctor.username + "先生", "/patient/doctor/#{doctor.id}/slots" %></td>
+  </tr>
+<% end %>
+</table>

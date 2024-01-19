@@ -19,7 +19,7 @@
 
 <% if current_administrator %>
   <ul class="account-menu">
-  <%= menu_link_to current_administrator.username + "さん", "" %>
+  <%= current_administrator.username + "さん" %>
     <%= menu_link_to "ログアウト", :admin_session,
       method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
@@ -27,7 +27,7 @@
 
 <% if current_reception%>
   <ul class="account-menu">
-  <%= menu_link_to current_reception.username + "さん", "" %>
+  <%= current_reception.username + "さん" %>
     <%= menu_link_to "ログアウト", :reception_session,
       method: :delete, data: { confirm: "ログアウトしますか？" } %>
   </ul>
