@@ -1,2 +1,2 @@
-class DepartmentController < ApplicationController
+class DepartmentsController < ApplicationController
 end

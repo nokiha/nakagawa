@@ -29,6 +29,9 @@ gem 'image_processing', '~> 1.2'
 gem 'mini_magick', '~> 4.8'
 
 group :development, :test do
+  # Generates ER-diagrams using Graphviz, a visualization library
+  gem 'rails-erd'
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -40,6 +43,9 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 
 group :development do
+  # Generates ER-diagrams using Graphviz, a visualization library
+  gem 'rails-erd'
+
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
