@@ -17,19 +17,20 @@ Rails.application.routes.draw do
   # 患者のルーティング
   namespace :patient do
     root "patients#index"
-    get "/doctor(/:doctor_id)/slots" => "slots#index"
     resources :patients, except: [:new, :create]
-    #resource :account, only: [:edit, :update, :new, :create]
-    resources :appointments, only: [:index, :edit]
+    resources :doctors, only: [:index, :show] do
+      resources :slots, only: [:index, :show] do
+        resources :appointments do
+          get "confirm",on: :member
+        end
+      end
+    end
+    resources :appointments, only: [:create]
     resources :departments, only: [:index, :show] do
       resources :slots, only: [:index, :show]
     end
 
     resource :session, only: [:create, :destroy]
-    #resources :patients, only: [:index, :show] do
-    #  resources :appointments, only: [:index]
-    #  resources :slots, only: [:index]
-    #end
   end
 
   # 医者のルーティング

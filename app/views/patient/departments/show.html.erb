@@ -8,7 +8,7 @@
 <table class="list">
 <% @doctors.each do |doctor| %>
   <tr>
-    <td><%= link_to doctor.username + "先生", "/patient/doctor/#{doctor.id}/slots" %></td>
+    <td><%= link_to doctor.username + "先生", patient_doctor_slots_path(doctor_id: doctor.id) %></td>
   </tr>
 <% end %>
 </table>

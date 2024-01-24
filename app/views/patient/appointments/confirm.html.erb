@@ -1,0 +1,12 @@
+<% @page_title = "予約内容は以下でよろしいですか？" %>
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "予約の編集に戻る", request.referer %></div>
+
+<p>先生　<%= @appointment.slot_id %></p>
+<p>日時　<%= @slot.time %></p>
+
+<%= form_for [:patient, @appointment] do |form| %>
+  
+    <div><%= form.submit %></div>
+<% end %>

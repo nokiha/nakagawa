@@ -7,7 +7,8 @@
     <% if slot.appointment == nil %>
         <% if @t != slot.time.strftime( "%m-%d %H:%M" ) %>
         <tr>
-            <td><%= link_to slot.time.strftime( "%m-%d %H:%M" ), "slot" %></td>
+            <td><%= link_to slot.time.strftime( "%m-%d %H:%M" ), confirm_patient_doctor_slot_appointment_path(id: Appointment.count+1,slot_id: slot.id,doctor_id: @doctor.id) %></td>
+            <td><%= slot.id %></td>
         <tr>
             <% @t = slot.time.strftime( "%m-%d %H:%M" ) %>
         <% end %>

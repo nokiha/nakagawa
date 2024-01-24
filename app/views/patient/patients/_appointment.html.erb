@@ -1,0 +1,9 @@
+<table class="list">
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td>日時　<%=  appointment.time.strftime("%m/%d %H:%M")%></td>
+      <td><%=  appointment.slot.doctor.username%>　先生</td>
+      <td><%=  appointment.slot.doctor.department.name%></td>
+    </tr>
+  <% end %>
+</table>
