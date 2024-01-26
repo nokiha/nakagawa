@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     get "/getdoctor" => "top#doctor"
-    #get "/doctor(/:doctor_id)/slots" => "top#slots"
+    get "/doctor(/:doctor_id)/slots" => "top#slots"
     resources :patients, only: [:index, :show, :destroy] do
       get "search", on: :collection
     end
@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
     end
     resource :session, only: [:create, :destroy]
+    resources :appointments, only: [:destroy]
   end
 
   namespace :reception do

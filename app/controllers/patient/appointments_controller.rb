@@ -21,4 +21,10 @@ class Patient::AppointmentsController < Patient::Base
         #redirect_to @patient, notice: "予約が完了しました"
     end
 
+    def destroy
+        @appointment = Appointment.find(params[:id])
+        @appointment.destroy
+        redirect_to :patient_root, notice: "予約をキャンセルしました。"
+    end
+
 end

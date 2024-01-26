@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
     has_secure_password  # パスワードの安全性
-    has_many :appointments
+    has_many :appointments, dependent: :destroy
+
 
 
     class << self

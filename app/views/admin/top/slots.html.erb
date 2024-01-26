@@ -9,7 +9,7 @@
         <tr>
         <td><%= slot.doctor.username %></td>
         <% if slot.appointment != nil %>
-           <td><%=  slot.appointment  %></td>
+           <td><%=  slot.appointment.patient.username  %></td>
         <% end %>
         <% if slot.appointment == nil %>
            <td>予約未定</td>

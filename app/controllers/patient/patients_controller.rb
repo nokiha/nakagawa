@@ -9,6 +9,7 @@ class Patient::PatientsController < Patient::Base
 
     def show
         @patient = current_patient
+        @appointments = @patient.appointments
     end
 
     def edit
