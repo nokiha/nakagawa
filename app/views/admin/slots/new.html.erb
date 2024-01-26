@@ -1,0 +1,21 @@
+<% @page_title = "予約枠を操作したい医者を選択してください" %>
+<h1><%= @page_title %></h1>
+
+
+<%= form_for [:admin, @slot] do |form| %>
+    <table class="attr">
+        <tr>
+            <th> <%= form.label :doctor_id, "医者"%> </th>
+                 <td>
+                <%= form.collection_select :doctor_id, Doctor.all, :id, :username %>
+                </td>
+        </tr>
+        <tr>
+            <th> <%= form.label :time, "時間枠"%></th>
+                <td>
+                <%= form.datetime_local_field "time"%>
+                </td>
+        </tr>
+    </table>
+<div><%= form.submit %></div>
+<% end %>
