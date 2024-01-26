@@ -36,8 +36,10 @@ Rails.application.routes.draw do
   # 医者のルーティング
   namespace :doctor  do
     root "doctors#index"
+    resources :patients, only: [:index, :show] do
+      get "search", on: :collection
+    end
     resources :doctors, only: [:index, :show] do
-      resources :patients, only: [:index, :show]
       resources :appointments, only: [:index]
     end
     resource :session, only: [:create, :destroy]
@@ -47,15 +49,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     get "/getdoctor" => "top#doctor"
-    get "/admin/getdoctor" => "top#doctor"
-    get "/doctors/admin/getdoctor" => "top#doctor"
     get "/doctor(/:doctor_id)/slots" => "top#slots"
     resources :patients, only: [:index, :show, :destroy] do
       get "search", on: :collection
     end
     resources :doctors do
       get "search", on: :collection
-     # resources :slots
     end
     resource :session, only: [:create, :destroy]
     resources :appointments, only: [:destroy]

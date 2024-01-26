@@ -1,0 +1,40 @@
+<% @page_title = "患者一覧" %>
+<h1><%= @page_title %></h1>
+
+<%= form_tag :search_doctor_patients, method: :get, class: "search" do %>
+  <%= text_field_tag "q", params[:q] %>
+  
+  <%= radio_button_tag "sex", "1" %>
+  <%= label_tag "sex_1", "男"%>
+
+  <!-- 女性のラジオボタン -->
+  <%= radio_button_tag "sex", "2" %>
+  <%= label_tag "sex_2", "女"%>
+
+  <!-- 指定なし（デフォルトでチェックが入っている）ラジオボタン -->
+  <%= radio_button_tag "sex", 0, true %>
+  <%= label_tag "sex_0", "指定なし"%>
+  <%= submit_tag "検索" %>
+<% end %>
+
+<% if @patients.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>名前</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td style="text-align: right"><%= patient.id %></td>
+          <td><%= link_to patient.username, [:doctor, patient] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @patients %>
+<% else %>
+  <p>会員情報がありません。</p>
+<% end %>
