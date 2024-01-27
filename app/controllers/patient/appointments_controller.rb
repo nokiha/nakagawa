@@ -15,7 +15,7 @@ class Patient::AppointmentsController < Patient::Base
         if @appointment.save
             redirect_to :patient_root, notice: "予約が完了しました"
         else
-            render patient_doctor_slots_path(doctor_id: doctor.id)
+            render reception_appointments
         end
         
         #redirect_to @patient, notice: "予約が完了しました"

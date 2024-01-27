@@ -2,7 +2,9 @@ class Reception::TopController < Reception::Base
     def login
     end
 
-
+    def index
+        @appointments = Appointment.order("id")
+    end
 
     def bad_request
         raise ActionController::ParameterMissing, ""

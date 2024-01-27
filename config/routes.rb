@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   get "forbidden" => "top#forbidden"
   get "internal_server_error" => "top#internal_server_error"
 
-  #resource :account, only: [:new, :create]
   resource :patients, only: [:new, :create]
-  #resource :doctors, only: []
 
   get "/doctor_login" => "top#doctor_login"
   get "/reception_login" => "top#reception_login"
@@ -43,6 +41,7 @@ Rails.application.routes.draw do
       resources :appointments, only: [:index]
     end
     resource :session, only: [:create, :destroy]
+    resources :check, only: [:index, :show, :destroy]
   end
 
   # 管理者のルーティング
@@ -59,17 +58,23 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :appointments, only: [:destroy]
     resources :slots, only: [:index, :new,:show, :create, :destroy]
-
+    resources :check, only: [:index, :show]
   end
 
+  # 受付のルーティング
   namespace :reception do
-    root "reception#index"
+    root "top#index"
     #resources :reception, only: [:index, :show] do
     #  resources :patients, only: [:index, :show]
      # resources :appointments, only: [:index]
      # resources :slots, only: [:index]
      # resources :check, only: [:index, :show, :create]
     #end
+    resources :appointments, only: [:index, :show] do
+      resources :check, only: [:index, :show, :new, :create]  do
+        get "confirm",on: :member
+      end
+    end
     resource :session, only: [:create, :destroy]
   end
 end

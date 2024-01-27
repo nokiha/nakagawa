@@ -1,0 +1,23 @@
+<% if @appointments.present? %>
+<table class="list">
+  <thead>
+    <tr>
+      <th>日時</th>
+      <th>医者名</th>
+      <th>診察科</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td><%=  appointment.time.strftime("%m/%d %H:%M") %></td>
+      <td><%=  appointment.slot.doctor.username %></td>
+      <td><%=  appointment.slot.doctor.department.name %></td>
+      <td>
+      <%= link_to "キャンセル", patient_doctor_slot_appointment_path(appointment.slot.doctor, appointment.slot, appointment), method: :delete,
+              data: { confirm: "予約をキャンセルしますか?" } %>
+              </td>
+    </tr>
+  <% end %>
+</table>
+<% end %>

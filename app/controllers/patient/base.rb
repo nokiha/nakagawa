@@ -4,8 +4,8 @@ class Patient::Base < ApplicationController
 
   private def current_patient
     Patient.find_by(id: session[:patient_id]) if session[:patient_id]
-end
-helper_method :current_patient
+  end
+  helper_method :current_patient
 
 
   private def patient_login_required
