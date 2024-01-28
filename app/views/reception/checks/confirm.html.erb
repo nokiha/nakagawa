@@ -1,9 +1,15 @@
 <% @page_title = "以下の予約を受付してよろしいですか？" %>
 <h1><%= @page_title %></h1>
 
+<div class="toolbar"><%= link_to "戻る", request.referer %></div>
+
+<p>患者名　<%= @appointment.patient.username %></p>
+<p>日時　<%= @appointment.time %></p>
+<p>診察科　<%= @appointment.slot.doctor.department.name %></p>
+<p>先生　<%= @appointment.slot.doctor.username %></p>
 
 
-<%= form_for [:patient, @appointment] do |form| %>
+<%= form_for [:reception, @check] do |form| %>
   
     <div><%= form.submit %></div>
 <% end %>

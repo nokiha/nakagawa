@@ -23,8 +23,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_071836) do
     t.integer "patient_id", null: false
     t.integer "slot_id", null: false
     t.datetime "time", null: false
+    t.integer "check_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["check_id"], name: "index_appointments_on_check_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
     t.index ["slot_id"], name: "index_appointments_on_slot_id"
   end

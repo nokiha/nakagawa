@@ -2,6 +2,8 @@ class Patient::PatientsController < Patient::Base
     def index
         @patient = current_patient
         @appointments = @patient.appointments
+
+        @checks = @patient.checks
     end
     
     def create

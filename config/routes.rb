@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   resource :patients, only: [:new, :create]
 
   get "/doctor_login" => "top#doctor_login"
-  get "/reception_login" => "top#reception_login"
   get "/admin_login" => "top#admin_login"
   get "/patient_login" => "top#patient_login"
+  get "/reception_login" => "top#reception_login"
   
   # 患者のルーティング
   namespace :patient do
@@ -55,26 +55,21 @@ Rails.application.routes.draw do
     resources :doctors do
       get "search", on: :collection
     end
-    resource :session, only: [:create, :destroy]
     resources :appointments, only: [:destroy]
     resources :slots, only: [:index, :new,:show, :create, :destroy]
     resources :check, only: [:index, :show]
+    resource :session, only: [:create, :destroy]
   end
 
   # 受付のルーティング
   namespace :reception do
-    root "top#index"
-    #resources :reception, only: [:index, :show] do
-    #  resources :patients, only: [:index, :show]
-     # resources :appointments, only: [:index]
-     # resources :slots, only: [:index]
-     # resources :check, only: [:index, :show, :create]
-    #end
+    root "appointments#index"
     resources :appointments, only: [:index, :show] do
-      resources :check, only: [:index, :show, :new, :create]  do
+      resources :checks  do
         get "confirm",on: :member
       end
     end
+    resources :checks, only: [:index, :create]
     resource :session, only: [:create, :destroy]
   end
 end

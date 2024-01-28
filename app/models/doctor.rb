@@ -4,6 +4,7 @@ class Doctor < ApplicationRecord
     has_many :slots # 医者は予約枠のスロットを複数持てる
     has_many :appointments, through: :slots
     has_many :patients, through: :appointments
+    has_many :checks, through: :appointments
 
     class << self
       def search(query, department)

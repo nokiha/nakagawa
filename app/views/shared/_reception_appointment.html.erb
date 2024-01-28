@@ -14,11 +14,10 @@
       <td><%=  appointment.slot.doctor.username %></td>
       <td><%=  appointment.slot.doctor.department.name %></td>
       <td>
-      <%= link_to "受付済みにする", confirm_reception_appointment_check_path(appointment_id: appointment.id, id: Check.count+1) %> |
-      <%= link_to "キャンセル", patient_doctor_slot_appointment_path(appointment.slot.doctor, appointment.slot, appointment), method: :delete,
-              data: { confirm: "予約をキャンセルしますか?" } %>
-              </td>
+      <%= link_to "受付済みにする", confirm_reception_appointment_check_path(appointment_id: appointment.id, id: Check.count+1) %>
     </tr>
   <% end %>
 </table>
+<% else %>
+現在の予約はありません
 <% end %>
