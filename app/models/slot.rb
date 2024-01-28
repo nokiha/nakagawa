@@ -1,6 +1,8 @@
 class Slot < ApplicationRecord
-    has_one :appointment, dependent: :nullify # スロットには多数の予約が入る
+    has_one :appointment, dependent: :destroy # スロットには多数の予約が入る
     belongs_to :doctor # 医者はスロットを多数もつ
+
+    scope :from_today, -> { where('time >= ?', Date.today) }
 
     class << self
         def search(query)

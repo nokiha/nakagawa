@@ -1,5 +1,6 @@
 class Admin::TopController < Admin::Base
     def index
+        @checks = Check.order("id")
     end
 
     def doctor

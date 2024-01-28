@@ -1,0 +1,26 @@
+<% if @checks.present? %>
+<table class="list">
+  <thead>
+    <tr>
+      <th>日時</th>
+      <th>受付番号</th>
+      <th>患者名</th>
+      <th>患者番号</th>
+      <th>診察終了</th>
+    </tr>
+  </thead>
+  <% @checks.each do |check| %>
+    <tr>
+      <td><%=  check.appointment.time.strftime("%m/%d %H:%M") %></td>
+      <td><%=  check.id %></td>
+      <td><%=  check.appointment.patient.username %></td>
+      <td><%=  check.appointment.patient.id %></td>
+      <td><%= link_to "◯", doctor_check_path(check), method: :delete,
+      data: { confirm: "診察を終了しますか?" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+現在順番待ちはありません
+<% end %>

@@ -4,6 +4,7 @@
     <tr>
       <th>日時</th>
       <th>医者名</th>
+      <th>患者名</th>
       <th>診察科</th>
       <th>操作</th>
     </tr>
@@ -12,6 +13,7 @@
     <tr>
       <td><%=  appointment.time.strftime("%m/%d %H:%M") %></td>
       <td><%=  appointment.slot.doctor.username %></td>
+      <td><%=  appointment.patient.username %></td>
       <td><%=  appointment.slot.doctor.department.name %></td>
       <td>
       <%= link_to "受付済みにする", confirm_reception_appointment_check_path(appointment_id: appointment.id, id: Check.count+1) %>

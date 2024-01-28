@@ -15,7 +15,7 @@ class Reception::ChecksController < Reception::Base
     def create
         @check = Check.new(session[:check])
         if @check.save
-            redirect_to :reception_root, notice: "予約が完了しました"
+            redirect_to :reception_root, notice: "受付ました"
         else
             render reception_doctor_slots_path(doctor_id: doctor.id)
         end

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       resources :appointments, only: [:index]
     end
     resource :session, only: [:create, :destroy]
-    resources :check, only: [:index, :show, :destroy]
+    resources :checks, only: [:index, :show, :destroy]
   end
 
   # 管理者のルーティング
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     end
     resources :appointments, only: [:destroy]
     resources :slots, only: [:index, :new,:show, :create, :destroy]
-    resources :check, only: [:index, :show]
+    resources :checks, only: [:index, :show]
     resource :session, only: [:create, :destroy]
   end
 
