@@ -1,10 +1,15 @@
 <% @page_title = @doctor.username  + " 先生 のスケジュール" %>
 <h1><%= @page_title %></h1>
 
+<div class="toolbar"><%= link_to "予約枠拡張", :new_admin_slot %></div>
+
+
 <table class="list">
 <% @slots.group_by { |slot| slot.time.to_i / 2.hours } .each do |_, slots| %>
     <table class="list">
       <th><%= slots.first.time.strftime("%m/%d %H:%M") %> 〜</th>
+      <th>患者名</th>
+      <th>予約枠の削除</th>
       <% slots.each do |slot| %>
         <tr>
         <td><%= slot.doctor.username %></td>
@@ -13,8 +18,8 @@
         <% end %>
         <% if slot.appointment == nil %>
            <td>予約未定</td>
-        </tr>
         <% end %>
+        <td><%=  link_to "削除", [:admin, slot], method: :delete, data: { confirm: "予約枠を削除します。該当の枠の予約もキャンセルされますがよろしいですか？" } %></td>
         </tr>
       <% end %>
       </table>

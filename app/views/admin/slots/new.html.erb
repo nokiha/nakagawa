@@ -4,6 +4,7 @@
 
 <%= form_for [:admin, @slot] do |form| %>
     <table class="attr">
+    <%= render "shared/errors", obj: @slot %>
         <tr>
             <th> <%= form.label :doctor_id, "医者"%> </th>
                  <td>

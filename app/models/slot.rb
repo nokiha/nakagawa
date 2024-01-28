@@ -4,7 +4,14 @@ class Slot < ApplicationRecord
 
     scope :from_today, -> { where('time >= ?', Date.today) }
 
-    validates :doctor_id, uniqueness: { scope: :time }
+
+    validate :limit_slots_per_doctor_per_time
+
+    private def limit_slots_per_doctor_per_time
+        if self.doctor.slots.where(time: self.time).count >= 7
+            errors.add(:base, "Each doctor can have up to 7 slots per time")
+        end
+    end
 
     class << self
         def search(query)

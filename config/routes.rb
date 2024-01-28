@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
     end
     resources :appointments, only: [:destroy]
-    resources :slots, only: [:index, :new,:show, :create, :destroy]
+    resources :slots, only: [:index, :new, :show, :create, :destroy]
     resources :checks, only: [:index, :show]
     resource :session, only: [:create, :destroy]
   end

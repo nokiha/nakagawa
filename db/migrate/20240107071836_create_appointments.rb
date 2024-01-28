@@ -8,5 +8,6 @@ class CreateAppointments < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :appointments, [:patient_id, :time], unique: true
   end
 end

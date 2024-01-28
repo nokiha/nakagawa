@@ -2,7 +2,7 @@ class Doctor::DoctorsController < Doctor::Base
     def index
         @time = DateTime.new(2024,01,12,9,0,0,"+00:00")
         @doctor_id = current_doctor.id
-        @slots = Slot.where(doctor_id: @doctor_id).from_today
+        @slots = Slot.where(doctor_id: @doctor_id).from_today.order("time")
         .page(params[:page]).per(35) 
     end
 

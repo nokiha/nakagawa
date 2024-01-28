@@ -15,7 +15,7 @@ class Patient::AppointmentsController < Patient::Base
         if @appointment.save
             redirect_to :patient_root, notice: "予約が完了しました"
         else
-            render reception_appointments
+            redirect_to :patient_root, notice: "予約は1日一件までです！！"
         end
         
         #redirect_to @patient, notice: "予約が完了しました"

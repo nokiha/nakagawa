@@ -7,6 +7,6 @@ class CreateSlots < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :slots, [:doctor_id, :time], unique: true
+
   end
 end
