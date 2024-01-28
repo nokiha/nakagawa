@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
     end
     resources :doctors, only: [:index, :show] do
-      resources :appointments, only: [:index]
+      resources :appointments, only: [:index, :destroy]
     end
     resource :session, only: [:create, :destroy]
     resources :checks, only: [:index, :show, :destroy]

@@ -8,7 +8,7 @@ class Doctor < ApplicationRecord
 
 
     validates :username, length: { maximum: 20, minimum: 2 }
-  validates :password, presence: true, length: { maximum: 8 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :password, presence: true, length: { minimum: 8 }, format: { with: /\A[a-zA-Z0-9]+\z/ }
   validates :number, presence: true, length: { maximum: 11 }, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :sex, inclusion: { in: [1, 2] }

@@ -1,5 +1,5 @@
 class Slot < ApplicationRecord
-    has_one :appointment, dependent: :destroy # スロットには多数の予約が入る
+    has_one :appointment, dependent: :destroy # スロットには予約が入る
     belongs_to :doctor # 医者はスロットを多数もつ
 
     scope :from_today, -> { where('time >= ?', Date.today) }
@@ -12,6 +12,19 @@ class Slot < ApplicationRecord
             errors.add(:base, "Each doctor can have up to 7 slots per time")
         end
     end
+
+    before_destroy :check_appointments
+
+    private def check_appointments
+      if appointment_exists?
+        errors.add(:base, "Cannot delete slot with existing appointments.")
+        throw(:abort)
+      end
+    end
+
+  private def appointment_exists?
+    Appointment.where(slot: self).exists?
+  end
 
     class << self
         def search(query)

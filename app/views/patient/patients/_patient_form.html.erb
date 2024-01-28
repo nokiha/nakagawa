@@ -27,10 +27,8 @@
               start_year: 1940, end_year: Time.current.year,
               use_month_numbers: true %></td>
   </tr>
-  <% if @patient.new_record? %>
   <tr>
   <th><%= form.label :password, "パスワード" %></th>
   <td><%= form.text_field :password %></td>
 </tr>
-<% end %>
 </table>

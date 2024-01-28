@@ -1,4 +1,5 @@
 <% if @appointments.present? %>
+予約一覧
 <table class="list">
   <thead>
     <tr>
@@ -14,10 +15,25 @@
       <td><%=  appointment.slot.doctor.username %></td>
       <td><%=  appointment.slot.doctor.department.name %></td>
       <td>
+      <% if current_patient %>
       <%= link_to "キャンセル", patient_doctor_slot_appointment_path(appointment.slot.doctor, appointment.slot, appointment), method: :delete,
               data: { confirm: "予約をキャンセルしますか?" } %>
               </td>
+      <% end %>
+      <% if current_doctor %>
+      <%= link_to "予約削除", doctor_doctor_appointment_path(doctor_id: current_doctor.id, id: appointment.id), method: :delete,
+        data: { confirm: "予約を削除しますか?" } %>
+              </td>
+      <% end %>
+      <% if current_administrator %>
+      <%= link_to "予約削除", admin_appointment_path(id: appointment.id), method: :delete,
+              data: { confirm: "予約を削除しますか?" } %>
+              </td>
+      <% end %>
+
     </tr>
   <% end %>
 </table>
+<else>
+現在予約はありません
 <% end %>

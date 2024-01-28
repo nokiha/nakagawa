@@ -1,4 +1,4 @@
-<% @page_title = "予約時間の選択" %>
+<% @page_title = @doctor.username + "先生 の予約時間の選択" %>
 <h1><%= @page_title %></h1>
 
 
@@ -8,7 +8,7 @@
         <% if @t != slot.time.strftime( "%m-%d %H:%M" ) %>
         <tr>
             <td><%= link_to slot.time.strftime( "%m-%d %H:%M" ), confirm_patient_doctor_slot_appointment_path(id: Appointment.count+1,slot_id: slot.id,doctor_id: @doctor.id) %></td>
-            <td><%= slot.id%></td>
+            <td><%= slot.doctor.username%> 先生</td>
         <tr>
             <% @t = slot.time.strftime( "%m-%d %H:%M" ) %>
         <% end %>

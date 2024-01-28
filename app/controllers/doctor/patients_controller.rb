@@ -1,7 +1,7 @@
 class Doctor::PatientsController < Doctor::Base
     def index
         @doctor = current_doctor
-        @patients = @doctor.patients.order("id")
+        @patients = @doctor.patients.order("id").distinct
         .page(params[:page]).per(15)
     end
 

@@ -26,8 +26,11 @@ class Admin::SlotsController < ApplicationController
     def destroy
         @slot = Slot.find(params[:id])
         @doctor = @slot.doctor
-        @slot.destroy
-        redirect_to "/admin/doctor/#{@doctor.id}/slots",  notice: "予約枠を削除しました。"
+        if @slot.destroy
+            redirect_to "/admin/doctor/#{@doctor.id}/slots", notice: "予約枠を削除しました。"
+        else
+            redirect_to "/admin/doctor/#{@doctor.id}/slots", notice: "予約があるため、予約枠を削除できませんでした"
+        end
     end
 
     private def slot_params

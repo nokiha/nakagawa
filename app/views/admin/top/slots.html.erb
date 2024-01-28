@@ -19,7 +19,7 @@
         <% if slot.appointment == nil %>
            <td>予約未定</td>
         <% end %>
-        <td><%=  link_to "削除", [:admin, slot], method: :delete, data: { confirm: "予約枠を削除します。該当の枠の予約もキャンセルされますがよろしいですか？" } %></td>
+        <td><%=  link_to "削除", [:admin, slot], method: :delete, data: { confirm: "予約枠を削除します。該当の枠に予約がある場合は削除できません" } %></td>
         </tr>
       <% end %>
       </table>

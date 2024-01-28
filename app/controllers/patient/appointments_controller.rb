@@ -15,7 +15,7 @@ class Patient::AppointmentsController < Patient::Base
         if @appointment.save
             redirect_to :patient_root, notice: "予約が完了しました"
         else
-            redirect_to :patient_root, notice: "予約は1日一件までです！！"
+            redirect_to :patient_root, notice: "予約がいっぱいです！！"
         end
         
         #redirect_to @patient, notice: "予約が完了しました"
@@ -23,8 +23,11 @@ class Patient::AppointmentsController < Patient::Base
 
     def destroy
         @appointment = Appointment.find(params[:id])
-        @appointment.destroy
-        redirect_to :patient_root, notice: "予約をキャンセルしました。"
+        if @appointment.destroy
+            redirect_to :patient_root, notice: "予約をキャンセルしました。"
+        else
+            redirect_to :patient_root, notice: "受付済みの予約はキャンセルできません！！"
+        end
     end
 
 end
