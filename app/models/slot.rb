@@ -4,6 +4,8 @@ class Slot < ApplicationRecord
 
     scope :from_today, -> { where('time >= ?', Date.today) }
 
+    validates :doctor_id, uniqueness: { scope: :time }
+
     class << self
         def search(query)
           rel = order("number")
