@@ -45,7 +45,11 @@ class Admin::DoctorsController < Admin::Base
 
     def destroy
         @doctor = Doctor.find(params[:id])
-        @doctor.destroy
-        redirect_to [:admin, @doctor],  notice: "医者を削除しました。"
+        if @doctor.destroy
+            redirect_to [:admin, @doctor],  notice: "医者を削除しました。"
+        else
+            redirect_back(fallback_location: root_path)
+            flash[:notice] = "現在の状況では医者を削除できませんでした。"
+        end
     end
 end
